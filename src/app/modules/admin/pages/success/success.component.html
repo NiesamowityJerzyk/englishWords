@@ -1,0 +1,24 @@
+<div class="w-full rounded-3xl bg-black pb-16 pt-16 px-16">
+  <div
+    class="mb-20 text-white text-center flex flex-col gap-8 items-center justify-center"
+  >
+    <div class="text-[50px] font-medium">
+      {{
+        adminForm.points >= 5
+          ? "Gratuluję dobrego wyniku"
+          : "Dziękuję, że spróbowałeś/aś swoich sił"
+      }}
+    </div>
+
+    <div class="text-[30px] font-medium">
+      Zdobyłeś/aś {{ adminForm.points }} na 10 punktów możliwych
+    </div>
+  </div>
+
+  <div
+    routerLink="/admin/quiz"
+    class="flex items-center justify-center p-2.5 mt-16 bg-green-500 text-black text-xl rounded-2xl cursor-pointer w-[200px] mx-auto font-bold"
+  >
+    Zagraj jeszcze raz
+  </div>
+</div>

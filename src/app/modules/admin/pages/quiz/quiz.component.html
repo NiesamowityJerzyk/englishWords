@@ -1,0 +1,50 @@
+<div class="w-full rounded-3xl bg-black pb-16 pt-16 px-16">
+  <div
+    class="mb-20 text-white text-center flex flex-col gap-8 items-center justify-center"
+  >
+    <div class="text-[24px] mb-2">
+      Pytanie {{ counter }} z {{ questions?.length }}
+    </div>
+    <audio #audio controls>
+      <source [src]="currentQuestion.audioSrc" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <div class="h-full grid grid-cols-2 items-center gap-16">
+    <div
+      *ngFor="let answer of currentQuestion.answers; let i = index"
+      class="flex items-center gap-2.5"
+    >
+      <div class="text-white uppercase text-[40px] font-medium">
+        {{ getQuestionLetter(i) }}
+      </div>
+      <div
+        (click)="chooseAnswer(answer)"
+        [ngStyle]="{
+          background: selectedAnswer === answer
+            ? 'linear-gradient(
+                89.8deg,
+                rgb(111, 55, 33) 4.3%,
+                rgb(22, 22, 232) 101.4%
+              )'
+            : 'linear-gradient(
+                89.8deg,
+                rgb(39, 115, 255) 4.3%,
+                rgb(62, 211, 232) 101.4%
+              )',
+        }"
+        class="h-[80px] w-full rounded-3xl bg-white text-white uppercase text-[24px] flex items-center justify-center font-medium cursor-pointer"
+      >
+        {{ answer.name }}
+      </div>
+    </div>
+  </div>
+
+  <button
+    [disabled]="!selectedAnswer"
+    (click)="confirmQuestion()"
+    class="flex items-center justify-center disabled:cursor-default disabled:bg-gray-500 p-2.5 mt-16 bg-white text-black text-xl rounded-2xl cursor-pointer w-[200px] mx-auto font-bold"
+  >
+    Zatwierdź
+  </button>
+</div>
